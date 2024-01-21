@@ -1,5 +1,5 @@
 const asyncHandler =(requestHandler)=>{
-    (req,res,next)=>{
+    return(req,res,next)=>{
         Promise.resolve(requestHandler(req,res,next)).catch((err)=>{next(err)})
     }
 }
@@ -7,13 +7,14 @@ const asyncHandler =(requestHandler)=>{
 
 
 
-// const asyncHandler = (requestHandler)=>(req,res,next)=>{
+// const asyncHandler = (requestHandler)=>{(req,res,next)=>{
 //     try {
-//         asyncHandler(req,res,next)
+//         requestHandler(req,res,next)
 //     } catch (error) {
 //         res.status(error.code||500).json({
 //             success: false,
 //             message: error.message
 //         })
 //     }
-// }
+// }}
+export {asyncHandler}
