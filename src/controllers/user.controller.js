@@ -357,7 +357,7 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
         )
 })
 
-const watchHistory = asyncHandler(async (req, res) => {
+const getWatchHistory = asyncHandler(async (req, res) => {
     const user = await User.aggregate([
         {
             $match: {
@@ -405,7 +405,7 @@ const watchHistory = asyncHandler(async (req, res) => {
     return res
         .status(200)
         .json(
-            new ApiResponse(200, user, "Watch History found successfully"))
+            new ApiResponse(200, user[0], "Watch history found successfully"))
 })
 export {
     registerUser,
@@ -417,5 +417,6 @@ export {
     updateUserDetails,
     updateAvatar,
     updateCoverImage,
-    getUserChannelProfile
+    getUserChannelProfile,
+    getWatchHistory
 }
