@@ -3,9 +3,9 @@ import { ApiErrors } from '../utils/ApiErrors.js'
 import { asyncHandler } from '../utils/asyncHandler.js'
 import jwt from 'jsonwebtoken'
 
-export const verifyJWT = asyncHandler(async (req, res, next) => {
+export const verifyJWT = asyncHandler(async (req, _, next) => {
     try {
-        const token = req.cookies?.accessToken || req.header("Authorization")?.replace('Bearer ', '')
+        const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "")
         if (!token) {
             throw new ApiErrors(401, 'Invalid User Request')
         }

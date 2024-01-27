@@ -137,8 +137,8 @@ const logoutUser = asyncHandler(async (req, res) => {
     await User.findByIdAndUpdate(
         req.user._id,
         {
-            $set: {
-                refreshToken: undefined
+            $unset: {
+                refreshToken: 1
             }
         },
         {
@@ -211,7 +211,7 @@ const changePassword = asyncHandler(async (req, res) => {
 const getCurrentUser = asyncHandler(async (req, res) => {
     return res
         .status(200)
-        .json(200, req.user, "Current user")
+        .json(new ApiResponse(200, req.user, "got Current user successfully"))
 })
 
 const updateUserDetails = asyncHandler(async (req, res) => {
