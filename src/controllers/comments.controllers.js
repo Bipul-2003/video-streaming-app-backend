@@ -40,7 +40,7 @@ const addComment = asyncHandler(async (req, res) => {
     const userId = req.user._id
 
     if (!content || !videoId?.trim()) {
-        throw new ApiErrors(401, "Content is required")
+        throw new ApiErrors(401, "Content is required !")
     }
     const comment = await Comment.create({
         content,
